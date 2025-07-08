@@ -1,10 +1,11 @@
-function WelcomeMessage() {
+import WelcomeMessage from './components/WelcomeMessage';
+
+function App() {
     return (
         <div>
-            <h1>Hello everyone, I am learning React at ALX!</h1>
-            <p>I am learning about JSX!</p>
+            <WelcomeMessage />
         </div>
     );
 }
 
-export default WelcomeMessage;
+export default App;
