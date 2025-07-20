@@ -1,23 +1,14 @@
+import React from 'react';
+
 function MainContent() {
   return (
-    <main
-      style={{
-        backgroundColor: '#e6f2ff',
-        padding: '30px',
-        minHeight: '250px',
-        textAlign: 'center',
-        borderRadius: '10px',
-        margin: '20px',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
-      }}
-    >
-      <h2 style={{ color: '#004080', marginBottom: '15px' }}>Explore Beautiful Cities</h2>
-      <p style={{ fontSize: '18px', color: '#333', lineHeight: '1.6', maxWidth: '600px', margin: '0 auto' }}>
-        Discover the most amazing cities to visit, live, or work in around the world. 
-        Each destination is packed with rich culture, innovation, and adventure waiting for you to explore.
+    <main style={{ padding: '20px', backgroundColor: '#eef2f3', minHeight: '300px' }}>
+      <h2 style={{ color: '#333' }}>Welcome to the Travel Blog</h2>
+      <p style={{ lineHeight: '1.6', fontSize: '18px' }}>
+        Explore the best cities around the world, discover new places, and share your travel stories.
       </p>
     </main>
   );
 }
 
-export default MainContent;
+export default MainContent; 
