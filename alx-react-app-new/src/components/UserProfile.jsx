@@ -1,17 +1,15 @@
-import Header from './components/Header';
-import Footer from './components/Footer';
-import MainContent from './components/MainContent';
-import UserProfile from './components/UserProfile';
-
-function App() {
+function UserProfile(props) {
   return (
-    <div>
-      <Header />
-      <MainContent />
-      <UserProfile name="Alice" age={30} bio="Frontend developer who loves exploring new cities." />
-      <Footer />
+    <div style={{ border: '1px solid gray', padding: '20px', margin: '20px', borderRadius: '8px', backgroundColor: '#fff' }}>
+      <h2 style={{ color: 'blue', marginBottom: '10px' }}>{props.name}</h2>
+      <p style={{ marginBottom: '5px' }}>
+        Age: <span style={{ fontWeight: 'bold' }}>{props.age}</span>
+      </p>
+      <p style={{ marginBottom: '5px' }}>
+        Bio: {props.bio}
+      </p>
     </div>
   );
 }
 
-export default App;
+export default UserProfile;
