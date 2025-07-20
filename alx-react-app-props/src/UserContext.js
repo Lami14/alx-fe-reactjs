@@ -1,6 +1,21 @@
-// src/UserContext.js
-import { createContext } from 'react';
+Checks for the UserContext.js file
 
-const UserContext = createContext();
+Checks for the proper implementation of the UserContext.js file
 
-export default UserContext;
+Checks for the implementation of context on the App.jsx file
+
+Checks for the use of context on the UserProfile.jsx file
+
+
+Requirement success
+Requirement failChecks for the UserContext.js file
+
+Checks for the proper implementation of the UserContext.js file
+
+Checks for the implementation of context on the App.jsx file
+
+Checks for the use of context on the UserProfile.jsx file
+
+
+Requirement success
+Requirement fail
