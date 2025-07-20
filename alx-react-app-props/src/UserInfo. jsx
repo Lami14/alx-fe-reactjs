@@ -1,9 +1,0 @@
-// src/UserInfo.jsx
-import React from 'react';
-import UserProfile from './UserProfile'; // renamed from UserDetails
-
-function UserInfo() {
-  return <UserProfile />;
-}
-
-export default UserInfo;
