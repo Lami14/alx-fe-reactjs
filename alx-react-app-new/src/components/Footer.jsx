@@ -1,7 +1,9 @@
+import React from 'react';
+
 function Footer() {
   return (
-    <footer style={{ backgroundColor: '#333', color: 'white', textAlign: 'center', padding: '15px', marginTop: '30px' }}>
-      <p>&copy; 2025 My Favorite Cities. All rights reserved.</p>
+    <footer style={{ backgroundColor: '#222', color: '#ccc', textAlign: 'center', padding: '10px', marginTop: 'auto' }}>
+      <p>&copy; 2025 Travel Blog. All rights reserved.</p>
     </footer>
   );
 }
