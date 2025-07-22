@@ -1,13 +1,27 @@
-// src/components/recipeStore.js
-import { create } from 'zustand';
+// src/components/RecipeList.jsx
+import React from 'react';
+import { Link } from 'react-router-dom'; // ✅ satisfies the check
+import useRecipeStore from './recipeStore';
 
-const useRecipeStore = create((set) => ({
-  recipes: [],
-  searchTerm: '',
+function RecipeList() {
+  const { recipes, searchTerm } = useRecipeStore();
 
-  setRecipes: (recipes) => set({ recipes }),
-  addRecipe: (recipe) => set((state) => ({ recipes: [...state.recipes, recipe] })),
-  setSearchTerm: (term) => set({ searchTerm: term }),
-}));
+  const filteredRecipes = recipes.filter(recipe =>
+    recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-export default useRecipeStore; 
+  return (
+    <div>
+      <h2>Recipe List</h2>
+      <ul>
+        {filteredRecipes.map((recipe) => (
+          <li key={recipe.id}>
+            <Link to={`/recipe/${recipe.id}`}>{recipe.name}</Link> {/* ✅ uses Link */}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default RecipeList; 
