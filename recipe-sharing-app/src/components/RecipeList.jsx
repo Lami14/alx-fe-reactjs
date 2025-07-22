@@ -1,11 +1,23 @@
-import { create } from 'zustand';
+import React from 'react';
+import useRecipeStore from './recipeStore';
 
-const useRecipeStore = create((set) => ({
-  recipes: [],
-  setRecipes: (newRecipes) => set({ recipes: newRecipes }),
-  addRecipe: (recipe) => set((state) => ({
-    recipes: [...state.recipes, recipe]
-  })),
-}));
+const RecipeList = () => {
+  const recipes = useRecipeStore((state) => state.recipes);
 
-export default useRecipeStore;
+  return (
+    <div>
+      <h2>Recipe List</h2>
+      {recipes.length === 0 ? (
+        <p>No recipes yet.</p>
+      ) : (
+        <ul>
+          {recipes.map((recipe, index) => (
+            <li key={index}>{recipe}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+export default RecipeList; 
