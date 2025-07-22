@@ -1,4 +1,4 @@
-npm install Zustand
+npm install zustand
 {
   "name": "my-company",
   "private": true,
