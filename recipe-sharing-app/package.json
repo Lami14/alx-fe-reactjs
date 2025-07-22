@@ -1,4 +1,5 @@
-npm install react-router-dom zustand
+npm install react-router-dom
+npm install zustand
 {
   "name": "my-company",
   "private": true,
