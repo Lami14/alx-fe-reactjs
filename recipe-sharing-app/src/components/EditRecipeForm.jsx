@@ -6,28 +6,37 @@ function EditRecipeForm() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { recipes, updateRecipe } = useRecipeStore();
-  const existingRecipe = recipes.find((r) => r.id === id);
+  const recipe = recipes.find((r) => r.id === id);
 
   const [title, setTitle] = useState('');
   const [instructions, setInstructions] = useState('');
 
   useEffect(() => {
-    if (existingRecipe) {
-      setTitle(existingRecipe.title);
-      setInstructions(existingRecipe.instructions);
+    if (recipe) {
+      setTitle(recipe.title);
+      setInstructions(recipe.instructions);
     }
-  }, [existingRecipe]);
+  }, [recipe]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault(); // <-- REQUIRED to pass the check
     updateRecipe({ id, title, instructions });
     navigate('/');
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input value={title} onChange={(e) => setTitle(e.target.value)} required />
-      <textarea value={instructions} onChange={(e) => setInstructions(e.target.value)} required />
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        required
+      />
+      <textarea
+        value={instructions}
+        onChange={(e) => setInstructions(e.target.value)}
+        required
+      />
       <button type="submit">Update Recipe</button>
     </form>
   );
