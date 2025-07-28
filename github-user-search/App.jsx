@@ -1,14 +1,12 @@
-import './services/api';
-import './App.css'
-import Search from './components/Search';
+import React from 'react';
 
 function App() {
-
   return (
-    <>
-      <Search />
-    </>
-  )
+    <div>
+      <h1>GitHub User Search</h1>
+      {/* Future components go here */}
+    </div>
+  );
 }
 
-export default App
+export default App;
