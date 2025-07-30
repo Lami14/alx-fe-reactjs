@@ -1,3 +1,4 @@
+npm install axios 
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -8,7 +9,7 @@ function Search() {
   const [error, setError] = useState('');
 
   const handleSearch = async () => {
-    if (!searchTerm) return;
+    if (!searchTerm.trim()) return;
 
     setLoading(true);
     setError('');
@@ -18,39 +19,59 @@ function Search() {
       const response = await axios.get(
         `https://api.github.com/search/users?q=${searchTerm}`
       );
-      setUsers(response.data.items);
+      if (response.data && response.data.items) {
+        setUsers(response.data.items);
+      } else {
+        setUsers([]);
+      }
     } catch (err) {
-      setError('Failed to fetch users. Please try again.');
+      setError('Error fetching GitHub users.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="search-container">
+    <div style={{ textAlign: 'center', marginTop: '2rem' }}>
       <input
         type="text"
-        placeholder="Search GitHub user..."
+        placeholder="Search GitHub users..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        style={{ padding: '8px', width: '250px', marginRight: '10px' }}
       />
-      <button onClick={handleSearch}>Search</button>
+      <button onClick={handleSearch} style={{ padding: '8px 16px' }}>
+        Search
+      </button>
 
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            <img src={user.avatar_url} alt={user.login} width={50} />
-            <a href={user.html_url} target="_blank" rel="noopener noreferrer">
-              {user.login}
-            </a>
-          </li>
-        ))}
-      </ul>
+      {users.length > 0 && (
+        <ul style={{ listStyle: 'none', padding: 0, marginTop: '2rem' }}>
+          {users.map((user) => (
+            <li key={user.id} style={{ marginBottom: '1rem' }}>
+              <img
+                src={user.avatar_url}
+                alt={user.login}
+                width={50}
+                style={{ borderRadius: '50%' }}
+              />
+              <div>
+                <a
+                  href={user.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {user.login}
+                </a>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
 
-export default Search; 
+export default Search;
