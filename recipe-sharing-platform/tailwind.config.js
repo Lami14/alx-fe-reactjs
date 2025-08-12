@@ -1,8 +1,10 @@
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}", // Scan all JS/TS/React files
+    "./public/index.html",
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {},
