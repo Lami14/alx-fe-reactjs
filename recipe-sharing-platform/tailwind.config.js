@@ -1,10 +1,11 @@
-npm install -D tailwindcss postcss autoprefixer
 /** @type {import('tailwindcss').Config} */
-export default {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: false,
+module.exports = {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}", // Scan all JS/TS/React files
+  ],
   theme: {
     extend: {},
   },
-  plugins: ["prettier-plugin-tailwindcss"],
+  plugins: [],
 }
