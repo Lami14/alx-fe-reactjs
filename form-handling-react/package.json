@@ -1,6 +1,7 @@
+npm create vite@latest form-handling-react -- --template react
+cd form-handling-react
 npm install
 npm install formik yup
-npm install formik
 {
   "name": "form-handling-react",
   "private": true,
