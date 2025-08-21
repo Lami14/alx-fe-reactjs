@@ -1,60 +1,35 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import TodoList from '../components/TodoList';
-import AddTodoForm from '../components/AddTodoForm';
+import { render, screen, fireEvent } from "@testing-library/react";
+import TodoList from "../TodoList";
 
-test('renders TodoList component', () => {
+describe("TodoList Component", () => {
+  test("renders initial todos", () => {
     render(<TodoList />);
-    expect(screen.getByText(/My todos:/i)).toBeInTheDocument();
-    expect(screen.getAllByText('Delete')[0]).toBeInTheDocument();
-});
+    expect(screen.getByText("Learn React")).toBeInTheDocument();
+    expect(screen.getByText("Build a Todo App")).toBeInTheDocument();
+  });
 
-test('adds new todo', () => {
-    const setTodos = jest.fn();
+  test("adds a new todo", () => {
+    render(<TodoList />);
+    const input = screen.getByPlaceholderText("Add a new todo");
+    const button = screen.getByText("Add");
 
-    render(<AddTodoForm setTodos={setTodos} />);
-
-    const input = screen.getByPlaceholderText('To do title');
-    const button = screen.getByText('Add Todo');
-
-    fireEvent.change(input, { target: { value: 'New Todo' } });
-
+    fireEvent.change(input, { target: { value: "Write tests" } });
     fireEvent.click(button);
 
-    expect(setTodos).toHaveBeenCalledWith(expect.any(Function));
+    expect(screen.getByText("Write tests")).toBeInTheDocument();
+  });
 
-    const updateFunction = setTodos.mock.calls[0][0];
-
-    const newTodos = updateFunction([]);
-    expect(newTodos).toHaveLength(1);
-    expect(newTodos[0]).toEqual({
-        id: expect.any(Number),
-        title: 'New Todo',
-        completed: false
-    });
-});
-
-test('toggles todo', () => {
+  test("toggles a todo", () => {
     render(<TodoList />);
+    const todo = screen.getByText("Learn React");
+    fireEvent.click(todo);
+    expect(todo).toHaveStyle("text-decoration: line-through");
+  });
 
-    const checkbox = screen.getByLabelText('Do the dishes');
-
-    expect(checkbox).not.toBeChecked();
-
-    fireEvent.click(checkbox);
-
-    expect(checkbox).toBeChecked();
-})
-
-test('deletes a todo item', () => {
+  test("deletes a todo", () => {
     render(<TodoList />);
-
-    const deleteButton = screen.getAllByText('Delete')[0];
-
+    const deleteButton = screen.getAllByText("❌")[0];
     fireEvent.click(deleteButton);
-
-    expect(screen.queryByText('Do the dishes')).not.toBeInTheDocument();
-
-    expect(screen.getByText('Take out the trash')).toBeInTheDocument();
+    expect(screen.queryByText("Learn React")).not.toBeInTheDocument();
+  });
 });
